@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharun Muthaiah Nataraj — ML Systems Engineer</title>
+<meta name="description" content="Portfolio of Dharun Muthaiah Nataraj — ML systems, inference engineering, computer vision, and applied research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --panel:#F3F3F0;
+    --ink:#101114;
+    --sub:#5B6169;
+    --line:#E1E2DE;
+    --line-strong:#C7C9C3;
+
+    --sys:#3457D5;      /* systems & inference */
+    --sys-bg:#EEF1FC;
+    --cv:#0F766E;        /* computer vision & robotics */
+    --cv-bg:#E9F5F3;
+    --res:#7C3AED;       /* research & publications */
+    --res-bg:#F3EEFD;
+    --metric:#1F7A5C;
+
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sidebar-w: 250px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--sys); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--sys); outline-offset:2px;}
+  h1,h2,h3{ font-family:var(--sans); }
+  p{margin:0 0 0.8em;}
+
+  /* ---------- Layout ---------- */
+  .shell{ display:flex; max-width:1240px; margin:0 auto; }
+
+  nav.sidebar{
+    width:var(--sidebar-w);
+    flex-shrink:0;
+    position:sticky;
+    top:0;
+    height:100vh;
+    padding:44px 22px;
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .nav-top .nav-name{ font-weight:700; font-size:15px; margin-bottom:3px; }
+  .nav-top .nav-role{ font-family:var(--mono); font-size:12px; color:var(--sub); margin-bottom:30px; }
+  .nav-links{ list-style:none; padding:0; margin:0; }
+  .nav-links li{ margin-bottom:13px; }
+  .nav-links a{
+    color:var(--ink); font-size:14px; font-weight:500;
+    border-left:2px solid transparent; padding-left:10px; display:block; text-decoration:none;
+  }
+  .nav-links a:hover, .nav-links a.active{
+    color:var(--sys); border-left-color:var(--sys);
+  }
+  .nav-bottom{ font-family:var(--mono); font-size:12px; color:var(--sub); }
+  .nav-contact{ margin-bottom:16px; }
+  .nav-contact a{ display:flex; align-items:center; gap:7px; margin-bottom:8px; color:var(--ink); }
+  .nav-contact a:hover{ color:var(--sys); }
+  .nav-contact svg{ width:14px; height:14px; flex-shrink:0; }
+  .resume-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:12px; font-weight:600;
+    background:var(--ink); color:var(--paper);
+    padding:9px 12px; border:1px solid var(--ink);
+  }
+  .resume-btn:hover{ background:var(--sys); border-color:var(--sys); text-decoration:none; color:#fff; }
+
+  main{ flex:1; min-width:0; padding:0 60px 100px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:flex; align-items:center; gap:40px;
+    padding:60px 0 44px; border-bottom:1px solid var(--line);
+    opacity:0; transform:translateY(10px);
+    animation:rise .6s ease-out forwards;
+  }
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+  .hero-photo{ width:130px; height:168px; object-fit:cover; border:1px solid var(--line-strong); flex-shrink:0; }
+  .hero-text h1{ font-size:29px; margin:0 0 6px; letter-spacing:-0.01em; }
+  .hero-tagline{ color:var(--sub); font-size:15.5px; max-width:50ch; margin:0 0 16px; }
+  .hero-links{ display:flex; gap:16px; font-family:var(--mono); font-size:13px; flex-wrap:wrap; }
+
+  section{ padding:44px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  section > h2{ font-size:13px; font-weight:600; color:var(--sub); margin:0 0 26px; font-family:var(--mono); }
+
+  /* ---------- Timeline / experience ---------- */
+  .timeline{ position:relative; padding-left:20px; }
+  .timeline::before{
+    content:''; position:absolute; left:4px; top:6px; bottom:6px; width:1px; background:var(--line-strong);
+  }
+  .entry{ position:relative; margin-bottom:30px; }
+  .entry:last-child{ margin-bottom:0; }
+  .entry::before{
+    content:''; position:absolute; left:-20px; top:6px; width:9px; height:9px;
+    background:var(--paper); border:2px solid var(--sys); border-radius:50%;
+  }
+  .entry-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:4px 16px; }
+  .entry-head h3{ font-size:16.5px; margin:0; }
+  .entry-org{ font-weight:500; color:var(--sub); }
+  .entry-date{ font-family:var(--mono); font-size:11.5px; color:var(--sub); white-space:nowrap; }
+  .entry-sub{ font-size:13.5px; color:var(--sub); margin:2px 0 10px; }
+  .entry-sub .tech{ font-family:var(--mono); font-size:12px; }
+  ul.bullets{ margin:0; padding-left:18px; }
+  ul.bullets li{ margin-bottom:7px; font-size:14.5px; }
+  ul.bullets li:last-child{ margin-bottom:0; }
+
+  /* ---------- Skills ---------- */
+  .skill-row{ display:flex; gap:16px; margin-bottom:16px; font-size:14px; flex-wrap:wrap; }
+  .skill-row:last-child{ margin-bottom:0; }
+  .skill-label{ font-family:var(--mono); font-size:12px; color:var(--sub); min-width:120px; flex-shrink:0; padding-top:3px; }
+  .tag{
+    font-family:var(--mono); font-size:12px;
+    background:var(--sys-bg); color:var(--sys);
+    padding:3px 8px; border:1px solid #D6DEF7;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:6px; align-content:flex-start; }
+
+  /* ---------- Project / research filter + grid ---------- */
+  .filters{ display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+  .filter-btn{
+    font-family:var(--mono); font-size:12.5px; background:none;
+    border:1px solid var(--line-strong); color:var(--sub);
+    padding:7px 14px; cursor:pointer;
+  }
+  .filter-btn:hover{ border-color:var(--sys); color:var(--sys); }
+  .filter-btn.active{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
+
+  .card-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .card{
+    border:1px solid var(--line); padding:20px; display:flex; flex-direction:column;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .card:hover{ border-color:var(--line-strong); transform:translateY(-2px); }
+  .card.hidden{ display:none; }
+  .card-cat{
+    display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600;
+    padding:2px 8px; margin-bottom:12px; width:fit-content;
+  }
+  .card-cat.systems{ background:var(--sys-bg); color:var(--sys); }
+  .card-cat.cv{ background:var(--cv-bg); color:var(--cv); }
+  .card-cat.research{ background:var(--res-bg); color:var(--res); }
+  .card h3{ font-size:15.5px; margin:0 0 4px; }
+  .card-meta{ font-family:var(--mono); font-size:11.5px; color:var(--sub); margin-bottom:10px; }
+  .card-desc{ font-size:13.5px; color:var(--sub); margin-bottom:12px; }
+  .card ul.bullets{ margin-bottom:12px; flex-grow:1; }
+  .card ul.bullets li{ font-size:13.5px; }
+  .card-tags{ display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+  .card-tags .tag{ font-size:11px; padding:2px 7px; }
+  .card-link{ font-family:var(--mono); font-size:12.5px; display:inline-flex; align-items:center; gap:5px; margin-top:auto; }
+  .card-link svg{ width:12px; height:12px; }
+  .card-status{ font-family:var(--mono); font-size:12px; color:var(--sub); margin-top:auto; }
+
+  /* ---------- Certifications / education ---------- */
+  .cert{ font-size:13.5px; margin-bottom:12px; }
+  .cert:last-child{ margin-bottom:0; }
+  .cert .cert-title{ font-weight:600; }
+  .cert .cert-sub{ color:var(--sub); }
+
+  footer{ padding:36px 0; font-family:var(--mono); font-size:12px; color:var(--sub); }
+  .footer-note{ margin-top:6px; }
+
+  /* ---------- Mobile ---------- */
+  .nav-toggle{ display:none; }
+  @media (max-width: 900px){
+    .shell{ flex-direction:column; }
+    nav.sidebar{
+      width:100%; height:auto; position:sticky; top:0; background:var(--paper); z-index:10;
+      padding:14px 20px; flex-direction:row; align-items:center; justify-content:space-between;
+      border-right:none; border-bottom:1px solid var(--line);
+    }
+    .nav-top{ display:flex; align-items:baseline; gap:10px; }
+    .nav-top .nav-role, .nav-bottom{ display:none; }
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper);
+      border-bottom:1px solid var(--line); padding:16px 20px;
+    }
+    .nav-links.open{ display:block; }
+    .nav-toggle{
+      display:block; background:none; border:1px solid var(--line-strong);
+      font-family:var(--mono); font-size:12px; padding:6px 10px; cursor:pointer; color:var(--ink);
+    }
+    main{ padding:0 20px 70px; }
+    .hero{ flex-direction:column; align-items:flex-start; text-align:left; padding-top:28px; }
+    .card-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero{ animation:none; opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div>
+      <div class="nav-top">
+        <div>
+          <div class="nav-name">Dharun Muthaiah Nataraj</div>
+          <div class="nav-role">ML Systems / Inference</div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Projects &amp; Research</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="nav-bottom">
+      <div class="nav-contact">
+        <a href="mailto:dharunmn@andrew.cmu.edu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 6 10 7 10-7"/></svg>
+          Email
+        </a>
+        <a href="https://github.com/Dharun15" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.82 1.19 3.08 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/dharun-muthaiah/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <a class="resume-btn" href="assets/resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+        Résumé
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="about">
+      <img class="hero-photo" src="assets/photo.jpg" alt="Portrait of Dharun Muthaiah Nataraj">
+      <div class="hero-text">
+        <h1>Dharun Muthaiah Nataraj</h1>
+        <p class="hero-tagline">MS student at Carnegie Mellon University building ML systems — inference engines, GPU kernels, and vision/speech pipelines that run fast in production. Background spanning applied research, computer vision, and embedded ML.</p>
+        <div class="hero-links">
+          <a href="mailto:dharunmn@andrew.cmu.edu">Email</a>
+          <a href="https://github.com/Dharun15" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/dharun-muthaiah/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="timeline">
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Research Intern, ASR Systems <span class="entry-org">— NoRILLA</span></h3>
+            <span class="entry-date">Jun 2026 – Present</span>
+          </div>
+          <p class="entry-sub"><span class="tech">Whisper · Parakeet · Canary-Qwen · NeMo · LoRA</span> · Pittsburgh, PA</p>
+          <ul class="bullets">
+            <li>Benchmarked CPU inference latency, throughput, and transcription accuracy across ASR models to evaluate deployment trade-offs for on-device speech recognition.</li>
+            <li>Fine-tuned ASR models using LoRA and NVIDIA NeMo, optimizing data preprocessing and training pipelines on NVIDIA A100 GPUs.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Research Intern, ML Systems <span class="entry-org">— Carnegie Mellon University</span></h3>
+            <span class="entry-date">Jan 2026 – Apr 2026</span>
+          </div>
+          <p class="entry-sub">Advisor: Prof. Tze Meng Low · <span class="tech">Triton · PyTorch · PyTorch Profiler · Nsight Compute</span></p>
+          <ul class="bullets">
+            <li>Ported the SMaLL framework for machine learning libraries from CPU to GPU, implementing optimized Triton kernels that achieved a 1.87× speedup over PyTorch/cuDNN.</li>
+            <li>Profiled GPU kernels and analyzed generated PTX, optimizing memory access, tiling, and kernel scheduling for convolution and reduction kernels.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Computer Vision Engineer <span class="entry-org">— MacV AI</span></h3>
+            <span class="entry-date">Jan 2025 – Jul 2025</span>
+          </div>
+          <p class="entry-sub"><span class="tech">Qwen 2.5 VLM · YOLOv8 · DeepStream · FastAPI · MongoDB · Roboflow</span> · Remote, Singapore</p>
+          <ul class="bullets">
+            <li>Designed a real-time YOLOv8 pipeline for continuous RTSP streams (92.5 mAP50) and deployed a multimodal VLM (Qwen 2.5) pipeline for safety-violation detection with structured JSON outputs.</li>
+            <li>Built a DeepStream-based real-time people-counting and multi-camera footfall analytics system, integrating YOLOv8 with DeepSORT for occupancy tracking.</li>
+            <li>Created and annotated a custom PPE detection dataset (helmets, vests) using Roboflow and trained YOLOv8 models for workplace safety compliance.</li>
+            <li>Engineered modular backend services (FastAPI, MongoDB) with RBAC, key generation/expiration, and secure middleware authentication for scalable industrial AI pipelines.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>R&amp;D Intern <span class="entry-org">— Qneuro India Pvt Ltd</span></h3>
+            <span class="entry-date">Jun 2024 – Aug 2024</span>
+          </div>
+          <p class="entry-sub"><span class="tech">GSR · cvxEDA · SVM · Random Forest</span> · Chennai, India</p>
+          <ul class="bullets">
+            <li>Researched a skin-conductance-based emotion recognition system using Galvanic Skin Response (GSR) sensors, designing custom data acquisition protocols to categorize signals as stress-inducing, amusing, or normal.</li>
+            <li>Preprocessed signals with moving-average and min-max normalization, then applied cvxEDA to decompose them into phasic and tonic components; classified emotional states with SVM and Random Forest.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>AI/ML Intern <span class="entry-org">— Dotworld Technologies Pvt Ltd</span></h3>
+            <span class="entry-date">Sep 2023 – Nov 2023</span>
+          </div>
+          <p class="entry-sub"><span class="tech">Generative Audio · CNN · MFCC · Linux</span> · Coimbatore, India</p>
+          <ul class="bullets">
+            <li>Benchmarked and optimized generative audio / voice cloning models (Tortoise, Bark) for latency, resource usage, and deployment efficiency.</li>
+            <li>Built a custom, noise-reduced audio dataset and a lightweight CNN-based wake-word detection system using MFCC features, achieving 97% accuracy.</li>
+            <li>Contributed to early data acquisition work for a 3D Gaussian Splatting project; worked extensively over SSH on Linux.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skill-row">
+        <span class="skill-label">Languages</span>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">MATLAB</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">ML Systems</span>
+        <div class="tag-row">
+          <span class="tag">Transformers</span><span class="tag">LLMs</span><span class="tag">VLMs</span><span class="tag">vLLM</span>
+          <span class="tag">FlashAttention</span><span class="tag">Quantization</span><span class="tag">LoRA</span>
+          <span class="tag">Speculative Decoding</span><span class="tag">Distributed Training</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">ML / Data</span>
+        <div class="tag-row">
+          <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">NumPy</span>
+          <span class="tag">Pandas</span><span class="tag">Scikit-learn</span><span class="tag">Matplotlib</span><span class="tag">OpenCV</span>
+          <span class="tag">Dlib</span><span class="tag">YOLO</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">Systems / Tools</span>
+        <div class="tag-row">
+          <span class="tag">Triton</span><span class="tag">CUDA</span><span class="tag">Docker</span><span class="tag">AWS</span>
+          <span class="tag">MongoDB</span><span class="tag">FastAPI</span><span class="tag">Git</span><span class="tag">Linux</span>
+          <span class="tag">PyTorch Profiler</span><span class="tag">Nsight Compute</span><span class="tag">DeepStream</span><span class="tag">Roboflow</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">Embedded / Edge</span>
+        <div class="tag-row"><span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">Edge Impulse</span><span class="tag">IoT</span></div>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2>Projects &amp; Research</h2>
+      <div class="filters" role="tablist" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all">All (10)</button>
+        <button class="filter-btn" data-filter="systems">Systems &amp; Inference (3)</button>
+        <button class="filter-btn" data-filter="cv">Computer Vision &amp; Robotics (3)</button>
+        <button class="filter-btn" data-filter="research">Research &amp; Publications (4)</button>
+      </div>
+
+      <div class="card-grid" id="cardGrid">
+
+        <!-- SYSTEMS -->
+        <div class="card" data-cat="systems">
+          <span class="card-cat systems">Systems &amp; inference</span>
+          <h3>Mini-vLLM: High-Performance LLM Inference Engine</h3>
+          <div class="card-meta">CMU · Jun 2026 – Present</div>
+          <p class="card-desc">From-scratch autoregressive inference engine replacing Hugging Face's <code>generate()</code>.</p>
+          <ul class="bullets">
+            <li>Custom decoding pipeline supporting greedy, temperature, top-k, and top-p sampling.</li>
+            <li>KV cache, streaming inference, dynamic batching, prefix caching, and a simplified PagedAttention memory manager; benchmarked latency, throughput, and TTFT vs. Hugging Face.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">CUDA</span></div>
+          <span class="card-status">Code — see GitHub profile</span>
+        </div>
+
+        <div class="card" data-cat="systems">
+          <span class="card-cat systems">Systems &amp; inference</span>
+          <h3>Multi-Turn RL for SIMD Optimization</h3>
+          <div class="card-meta">CMU · Sep 2025 – Dec 2025</div>
+          <p class="card-desc">Agentic RL pipeline (GSPO) that learns to auto-vectorize C kernels for AVX2.</p>
+          <ul class="bullets">
+            <li>Verifiable rewards combining functional correctness with measured latency speedup — no human labeling.</li>
+            <li>Standardized 287 kernels (TSVC/SIMDBench) into a dataset with execution harnesses for reward computation.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">RL / GSPO</span><span class="tag">Qwen-2.5</span><span class="tag">AVX2</span></div>
+          <span class="card-status">Code — see GitHub profile</span>
+        </div>
+
+        <div class="card" data-cat="systems">
+          <span class="card-cat systems">Systems &amp; inference</span>
+          <h3>Systems-Centric DL for Predictive Maintenance</h3>
+          <div class="card-meta">CMU · Oct 2025 – Dec 2025</div>
+          <p class="card-desc">Remaining Useful Life (RUL) prediction on C-MAPSS, optimized for inference speed.</p>
+          <ul class="bullets">
+            <li>Benchmarked CNN, RNN, and Transformer architectures for RUL prediction.</li>
+            <li>Optimized Transformer inference with FlashAttention-2 and fused Triton kernels, reaching 1.4M samples/s and 43× faster uncertainty estimation.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">FlashAttention-2</span><span class="tag">Triton</span></div>
+          <span class="card-status">Code — see GitHub profile</span>
+        </div>
+
+        <!-- CV & ROBOTICS -->
+        <div class="card" data-cat="cv">
+          <span class="card-cat cv">Computer vision</span>
+          <h3>Veggie Vision: Vegetable Detection &amp; Weight Estimation</h3>
+          <div class="card-meta">Kleos Hackathon, DY Patil University · Jun 2024</div>
+          <p class="card-desc">Real-time vegetable detection and weight estimation deployed as a web app.</p>
+          <ul class="bullets">
+            <li>Trained a custom YOLOv8 model on a self-collected vegetable dataset.</li>
+            <li>Implemented bounding-box-based weight estimation and deployed real-time inference through a Flask web application.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">YOLOv8</span><span class="tag">Roboflow</span><span class="tag">Flask</span></div>
+          <span class="card-status">Code — see GitHub profile</span>
+        </div>
+
+        <div class="card" data-cat="cv">
+          <span class="card-cat cv">Computer vision</span>
+          <h3>Retinal Blood Vessel Segmentation</h3>
+          <div class="card-meta">VIT Chennai · Aug 2023 – Nov 2023</div>
+          <p class="card-desc">Attention U-Net pipeline for segmenting blood vessels in retinal images.</p>
+          <ul class="bullets">
+            <li>Trained on DRIVE, tested on CHASE_DB, using CLAHE preprocessing and flip/rotation augmentation.</li>
+            <li>Integrated Attention U-Net with a Squeeze-and-Excitation layer, reaching 75.4% IoU, 90.4% accuracy, 0.14 loss.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">Attention U-Net</span><span class="tag">PyTorch</span></div>
+          <span class="card-status">Code — see GitHub profile</span>
+        </div>
+
+        <div class="card" data-cat="cv">
+          <span class="card-cat cv">Computer vision</span>
+          <h3>Driver Drowsiness Detection</h3>
+          <div class="card-meta">VIT Chennai · Apr 2023</div>
+          <p class="card-desc">Real-time drowsiness classification and alerting from eye state.</p>
+          <ul class="bullets">
+            <li>Led development of a real-time eye-detection pipeline using Dlib and Haar cascades.</li>
+            <li>Trained a CNN classifier on a Kaggle eye dataset, achieving a 94% test score, for real-time drowsiness alerts.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">Dlib</span><span class="tag">Haar Cascade</span><span class="tag">CNN</span></div>
+          <span class="card-status">Code — see GitHub profile</span>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="card" data-cat="research">
+          <span class="card-cat research">Research</span>
+          <h3>Weakly Supervised Video Anomaly Detection (AGCN)</h3>
+          <div class="card-meta">VIT Chennai (SENSE) · Jan 2025 – Apr 2025</div>
+          <p class="card-desc">Adaptive graph convolutional network for anomaly detection on UCF-Crime.</p>
+          <ul class="bullets">
+            <li>I3D feature extraction with global graphs built from feature similarity and temporal consistency.</li>
+            <li>Attention, residual, and skip connections plus a novel K-max loss for segment-level supervision — 92.15% AUC, surpassing prior state of the art.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">GCN</span><span class="tag">I3D</span><span class="tag">UCF-Crime</span></div>
+          <span class="card-status">Under review — Results in Engineering (ScienceDirect)</span>
+        </div>
+
+        <div class="card" data-cat="research">
+          <span class="card-cat research">Research</span>
+          <h3>NIR-Based Non-Invasive Blood Glucose Monitoring</h3>
+          <div class="card-meta">VIT Chennai (SENSE), advised by Dr. Jagannath M · Aug 2024 – Nov 2024</div>
+          <p class="card-desc">Custom near-infrared sensor prototype for non-invasive glucose estimation.</p>
+          <ul class="bullets">
+            <li>Built a custom NIR sensor module and dataset mapping light penetration to reference glucose levels across 4 sessions, pre/post meals.</li>
+            <li>Evaluated random forest, polynomial, SVR, and logistic regression models; integrated live LCD display and high-glucose alerting on Arduino Uno.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">NIR Sensing</span><span class="tag">Arduino</span><span class="tag">Regression Models</span></div>
+          <a class="card-link" href="https://doi.org/10.1109/IEEECONF64992.2025.10963071" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L12.5 19.5"/></svg>
+            View publication (IEEE)
+          </a>
+        </div>
+
+        <div class="card" data-cat="research">
+          <span class="card-cat research">Research</span>
+          <h3>Autism Spectrum Disorder Detection using fMRI</h3>
+          <div class="card-meta">VIT Chennai (SENSE), advised by Dr. Jagannath M · Nov 2023 – May 2024</div>
+          <p class="card-desc">Attention-based deep learning pipeline classifying ASD from fMRI scans.</p>
+          <ul class="bullets">
+            <li>Transformed 4D fMRI scans (ABIDE dataset) into 2D representations using Nilearn/Nibabel for spatial feature extraction.</li>
+            <li>Built a Multihead Attention + Squeeze-and-Excitation network, then classified with SVM/Random Forest — 98.59% accuracy.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">fMRI</span><span class="tag">Attention CNN</span><span class="tag">ABIDE</span></div>
+          <a class="card-link" href="https://doi.org/10.1016/j.procs.2025.04.671" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L12.5 19.5"/></svg>
+            View publication (Procedia CS) · presented at ICMLDE 2024
+          </a>
+        </div>
+
+        <div class="card" data-cat="research">
+          <span class="card-cat research">Research</span>
+          <h3>Smart Waste Segregation System</h3>
+          <div class="card-meta">VIT Chennai, advised by Dr. Berlin Hency V · Feb 2024 – Jun 2024</div>
+          <p class="card-desc">IoT-based system segregating waste into dry, organic, hazardous, and plastic streams.</p>
+          <ul class="bullets">
+            <li>ESP32 camera + MobileNetV2 for visual classification (97% accuracy), with an inductive sensor for hazardous items.</li>
+            <li>Ultrasonic sensors for real-time bin-level monitoring and cloud updates; dataset built and trained on the Edge Impulse platform.</li>
+          </ul>
+          <div class="card-tags"><span class="tag">ESP32</span><span class="tag">MobileNetV2</span><span class="tag">Edge Impulse</span></div>
+          <span class="card-status">Accepted — IEEE-iSES 2024, IIIT Delhi</span>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="entry" style="margin-bottom:22px;">
+        <div class="entry-head">
+          <h3>Carnegie Mellon University</h3>
+          <span class="entry-date">Dec 2026</span>
+        </div>
+        <p class="entry-sub">M.S. in Civil and Computer Engineering (AI &amp; ML Systems Focus) — GPA: 4.0/4.0 — Pittsburgh, PA</p>
+        <p class="entry-sub">Coursework: Intro to Deep Learning, Visual Learning and Recognition, LLM Systems, ML for Radars</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Vellore Institute of Technology</h3>
+          <span class="entry-date">May 2025</span>
+        </div>
+        <p class="entry-sub">B.Tech in Electronics and Communication Engineering — GPA: 9.18/10 — Chennai, India</p>
+        <p class="entry-sub">Coursework: Signals &amp; Systems, Digital Signal Processing, AI &amp; Machine Learning, VLSI Design, Embedded Systems, IoT Domain Analytics</p>
+      </div>
+
+      <div style="margin-top:30px;">
+        <p style="font-family:var(--mono); font-size:12px; color:var(--sub); margin-bottom:14px;">Certifications</p>
+        <div class="cert"><span class="cert-title">Introduction to Agent Skills</span> — <span class="cert-sub">Anthropic</span></div>
+        <div class="cert"><span class="cert-title">Introduction to Model Context Protocol</span> — <span class="cert-sub">Anthropic</span></div>
+        <div class="cert"><span class="cert-title">Model Context Protocol: Advanced Topics</span> — <span class="cert-sub">Anthropic</span></div>
+        <div class="cert"><span class="cert-title">Generative AI Applications using Vertex AI</span> — <span class="cert-sub">Google Cloud Skills Boost / SmartInternz, scored 95%</span></div>
+        <div class="cert"><span class="cert-title">Entrepreneurship</span> — <span class="cert-sub">NPTEL, 83%, passed with distinction</span></div>
+        <div class="cert"><span class="cert-title">Introduction to C++</span> — <span class="cert-sub">Coding Ninjas, Certificate of Excellence</span></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p style="font-size:14.5px; max-width:52ch;">Open to new grad roles in ML systems, inference engineering, and applied ML. Reach out directly — I usually reply within a day.</p>
+      <div class="hero-links" style="margin-top:16px;">
+        <a href="mailto:dharunmn@andrew.cmu.edu">dharunmn@andrew.cmu.edu</a>
+        <a href="https://github.com/Dharun15" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/dharun-muthaiah/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+      </div>
+    </section>
+
+    <footer>
+      Built by Dharun Muthaiah Nataraj
+      <div class="footer-note">Last updated 2026</div>
+    </footer>
+  </main>
+</div>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Active section highlight
+  const sections = document.querySelectorAll('main section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const setActive = () => {
+    let current = sections[0]?.id;
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 120) current = sec.id;
+    });
+    links.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  };
+  document.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // Project/research filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#cardGrid .card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card => {
+        card.classList.toggle('hidden', f !== 'all' && card.dataset.cat !== f);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
